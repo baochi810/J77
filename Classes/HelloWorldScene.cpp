@@ -81,8 +81,4 @@ void HelloWorld::menuCloseCallback(Ref* pSender)
 {
 	auto myscene = Hello2::createScene();
 	Director::getInstance()->replaceScene(myscene);
-
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-    exit(0);
-#endif
 }
