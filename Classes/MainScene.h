@@ -1,9 +1,9 @@
-#ifndef __HELLO2_SCENE_H__
-#define __HELLO2_SCENE_H__
+#ifndef __MAIN_SCENE_H__
+#define __MAIN_SCENE_H__
 
 #include "cocos2d.h"
 
-class Hello2 : public cocos2d::Layer
+class MainScene : public cocos2d::Layer
 {
 public:
     // there's no 'id' in cpp, so we recommend returning the class instance pointer
@@ -13,10 +13,12 @@ public:
     virtual bool init();
     
     // a selector callback
-    void menuCloseCallback(cocos2d::Ref* pSender);
+    void menuAchiCallback(cocos2d::Ref* pSender);
+
+	void menuShopCallback(cocos2d::Ref* pSender);
     
     // implement the "static create()" method manually
-    CREATE_FUNC(Hello2);
+	CREATE_FUNC(MainScene);
 };
 
 #endif // __HELLOWORLD_SCENE_H__

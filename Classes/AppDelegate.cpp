@@ -1,6 +1,5 @@
 #include "AppDelegate.h"
-#include "HelloWorldScene.h"
-#include "Hello2.h"
+#include "MainScene.h"
 
 USING_NS_CC;
 
@@ -36,7 +35,11 @@ bool AppDelegate::applicationDidFinishLaunching() {
     auto glview = director->getOpenGLView();
     if(!glview) {
         glview = GLViewImpl::create("My Game");
+		glview->setFrameSize(568, 758);
+		
+		
         director->setOpenGLView(glview);
+		glview->setDesignResolutionSize(852, 1136, ResolutionPolicy::FIXED_HEIGHT);
     }
 
     // turn on display FPS
@@ -48,7 +51,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     register_all_packages();
 
     // create a scene. it's an autorelease object
-    auto scene = Hello2::createScene();
+    auto scene = MainScene::createScene();
 
     // run
     director->runWithScene(scene);

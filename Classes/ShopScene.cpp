@@ -1,15 +1,15 @@
-#include "Hello2.h"
-#include "HelloWorldScene.h"
+#include "ShopScene.h"
+#include "MainScene.h"
 
 USING_NS_CC;
 
-Scene* Hello2::createScene()
+Scene* Shop::createScene()
 {
     // 'scene' is an autorelease object
     auto scene = Scene::create();
     
     // 'layer' is an autorelease object
-    auto layer = Hello2::create();
+    auto layer = Shop::create();
 
     // add layer as a child to scene
     scene->addChild(layer);
@@ -19,7 +19,7 @@ Scene* Hello2::createScene()
 }
 
 // on "init" you need to initialize your instance
-bool Hello2::init()
+bool Shop::init()
 {
     //////////////////////////////
     // 1. super init first
@@ -37,9 +37,9 @@ bool Hello2::init()
 
     // add a "close" icon to exit the progress. it's an autorelease object
     auto closeItem = MenuItemImage::create(
-                                           "CloseNormal.png",
-                                           "CloseSelected.png",
-                                           CC_CALLBACK_1(Hello2::menuCloseCallback, this));
+                                           "home.png",
+                                           "homehi.png",
+                                           CC_CALLBACK_1(Shop::menuCloseCallback, this));
     
 	closeItem->setPosition(Vec2(origin.x + visibleSize.width - closeItem->getContentSize().width/2 ,
                                 origin.y + closeItem->getContentSize().height/2));
@@ -55,7 +55,7 @@ bool Hello2::init()
     // add a label shows "Hello World"
     // create and initialize a label
     
-    auto label = Label::createWithTTF("Hello 2", "fonts/Marker Felt.ttf", 24);
+    auto label = Label::createWithTTF("Shop", "fonts/Marker Felt.ttf", 24);
     
     // position the label on the center of the screen
     label->setPosition(Vec2(origin.x + visibleSize.width/2,
@@ -64,22 +64,14 @@ bool Hello2::init()
     // add the label as a child to this layer
     this->addChild(label, 1);
 
-    // add "Hello2" splash screen"
-    auto sprite = Sprite::create("HelloWorld.png");
-
-    // position the sprite on the center of the screen
-    sprite->setPosition(Vec2(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
-
-    // add the sprite as a child to this layer
-    this->addChild(sprite, 0);
     
     return true;
 }
 
 
-void Hello2::menuCloseCallback(Ref* pSender)
+void Shop::menuCloseCallback(Ref* pSender)
 {
-	auto myscene = HelloWorld::createScene();
+	auto myscene = MainScene::createScene();
 	Director::getInstance()->replaceScene(myscene);
 
 
