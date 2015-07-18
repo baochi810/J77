@@ -1,6 +1,7 @@
 #include "AppDelegate.h"
 #include "MainScene.h"
 
+
 USING_NS_CC;
 
 AppDelegate::AppDelegate() {
@@ -41,7 +42,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
         director->setOpenGLView(glview);
 		glview->setDesignResolutionSize(852, 1136, ResolutionPolicy::FIXED_HEIGHT);
     }
-
+    
     // turn on display FPS
     director->setDisplayStats(true);
 

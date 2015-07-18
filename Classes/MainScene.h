@@ -17,6 +17,8 @@ public:
 
 	void menuShopCallback(cocos2d::Ref* pSender);
     
+    void menuFBCallback(cocos2d::Ref* pSender);
+    
     // implement the "static create()" method manually
 	CREATE_FUNC(MainScene);
 };
