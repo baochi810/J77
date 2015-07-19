@@ -95,39 +95,39 @@ void MainScene::menuShopCallback(Ref* pSender)
 
 void MainScene::menuFBCallback(Ref* pSender)
 {
-    if (cocos2d::plugin::FacebookAgent::getInstance()->isLoggedIn() == false){
+    if (plugin::FacebookAgent::getInstance()->isLoggedIn() == false){
     std::string permissions = "user_friends,publish_actions,user_about_me";
-    cocos2d::plugin::FacebookAgent::getInstance()->login(permissions, [=](int ret, std::string& msg){
+    plugin::FacebookAgent::getInstance()->login(permissions, [=](int ret, std::string& msg){
         CCLOG("%s", msg.c_str());
     });
     } else {
         
-        std::string path = "/me/invitable_friends";
-        cocos2d::plugin::FacebookAgent::FBInfo params;
-        cocos2d::plugin::FacebookAgent::getInstance()->api(path, cocos2d::plugin::FacebookAgent::HttpMethod::Get, params,[=](int ret ,std::string& msg)
+       // std::string path = "/me/invitable_friends";
+       // plugin::FacebookAgent::FBInfo params;
+       // plugin::FacebookAgent::getInstance()->api(path, //plugin::FacebookAgent::HttpMethod::Get, params,[=](int ret ,std::string& msg)
+       //                                          {
+       //                                              CCLOG("%s", msg.c_str());
+       //                                          });
+    
+        plugin::FacebookAgent::FBInfo params;
+        params.insert(std::make_pair("name", "My Game"));
+        params.insert(std::make_pair("caption", "New Coocs2dx game"));
+        params.insert(std::make_pair("description", "My Game! Built buy cocos2dx."));
+        params.insert(std::make_pair("link", "http://www.cocos2d-x.org"));
+        params.insert(std::make_pair("picture", "http://your.game.icon.link"));
+        if (plugin::FacebookAgent::getInstance()->canPresentDialogWithParams(params))
+        {
+            plugin::FacebookAgent::getInstance()->dialog(params, [=](int ret ,std::string& msg)
                                                  {
                                                      CCLOG("%s", msg.c_str());
                                                  });
-    
-        //cocos2d::plugin::FacebookAgent::FBInfo params;
-        //params.insert(std::make_pair("name", "My Game"));
-        //params.insert(std::make_pair("caption", "New Coocs2dx game"));
-        //params.insert(std::make_pair("description", "My Game! Built buy cocos2dx."));
-        //params.insert(std::make_pair("link", "http://www.cocos2d-x.org"));
-        //params.insert(std::make_pair("picture", "http://your.game.icon.link"));
-        //if (cocos2d::plugin::FacebookAgent::getInstance()->canPresentDialogWithParams(params))
-        //{
-        //    cocos2d::plugin::FacebookAgent::getInstance()->dialog(params, [=](int ret ,std::string& msg)
-        //                                         {
-        //                                             CCLOG("%s", msg.c_str());
-        //                                         });
-        //}
-        //else
-        //{
-        //    cocos2d::plugin::FacebookAgent::getInstance()->share(params, [=](int ret ,std::string& msg)
-        //                                        {
-        //                                            CCLOG("%s", msg.c_str());
-        //                                        });
-        //}
+        }
+        else
+        {
+            plugin::FacebookAgent::getInstance()->share(params, [=](int ret ,std::string& msg)
+                                                {
+                                                    CCLOG("%s", msg.c_str());
+                                                });
+        }
     }
 }
