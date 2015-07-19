@@ -7,8 +7,9 @@ temp_ifs="$IFS"
 IFS=$'\n'
 
 script_path="$BASH_SOURCE"
-script_path="$(dirname "$script_path")"
-ALL_PLUGINS=(`cd "${script_path}/../plugins" && find -L . -maxdepth 1 -type d`)
+script_path="/f/2015/projects/J77/cocos2d/plugin/tools"
+echo "Path = ${script_path}"
+ALL_PLUGINS=(`cd "${script_path}/../plugins" && find . -maxdepth 1 -type d`)
 PLUGIN_NUM=${#ALL_PLUGINS[@]}
 for ((i=0; i < ${PLUGIN_NUM}; i++))
 do
@@ -16,7 +17,7 @@ do
     ALL_PLUGINS[$i]="${plugin_name#./}"
 done
 
-export ALL_PLUGINS
+export ALL_PLUGINS=("protocols" "facebook")
 echo "ALL_PLUGINS = (${ALL_PLUGINS[@]})"
 
 # restore IFS
