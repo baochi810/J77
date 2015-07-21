@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">J77</string>
+    <string name="app_name">Gem Master</string>
+	<string name="app_id">407081572830585</string>
 </resources>
