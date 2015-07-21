@@ -1,0 +1,50 @@
+Problem:
+Cannot include file .h from other directory
+
+Solution:
+Add to Android.mk
+LOCAL_C_INCLUDES += $(LOCAL_PATH)/../../cocos2d/plugin/publish/protocols/android
+LOCAL_C_INCLUDES += $(LOCAL_PATH)/../../cocos2d/plugin/publish/protocols/include
+LOCAL_C_INCLUDES += $(LOCAL_PATH)/../../cocos2d/plugin/protocols/platform/android
+
+--------------------------------------------------------
+
+
+NDK_MODULE_PATH thuc ra la cai nay
+$(call import-add-path,$(LOCAL_PATH)/../../cocos2d)
+$(call import-add-path,$(LOCAL_PATH)/../../cocos2d/external)
+$(call import-add-path,$(LOCAL_PATH)/../../cocos2d/cocos)
+
+
+--------------------------------------------------------
+
+1 --- LOCAL_WHOLE_STATIC_LIBRARIES := PluginProtocolStatic
+2 --- include $(BUILD_SHARED_LIBRARY)
+Phai de dong 1 nam o tren dong 2, neu ko se bi loi unreference to cocos2d::plugin:.....
+
+
+--------------------------------------------------------
+failed resolution of: lorg
+
+Chep cai nay vao file build-cfg.json (ly do thieu libs)
+{
+			"from": "../cocos2d/plugin/jsbindings/script", 
+			"to": ""
+		},
+		{
+			"from": "../cocos2d/plugin/protocols/proj.android/src", 
+			"to": "../src"
+		},
+		{
+			"from": "../cocos2d/plugin/plugins/facebook/proj.android/src", 
+			"to": "../src"
+		}, 
+		{
+			"from": "../cocos2d/plugin/plugins/facebook/proj.android/sdk", 
+			"to": "../libs"
+		}
+		
+		
+-----------------------------------------------------------------
+dlopen failed
+Dung NDK 32bit thoi
