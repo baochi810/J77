@@ -48,3 +48,12 @@ Chep cai nay vao file build-cfg.json (ly do thieu libs)
 -----------------------------------------------------------------
 dlopen failed
 Dung NDK 32bit thoi
+
+----------------------------------------------------------------
+//http://qiita.com/blankblank/items/0daf178e5e070a723798
+//http://laboyukai.blogspot.com/2014/06/cocos2dx-v30-plugin-x-admob.html
+Dung 2 link nay de lam admob
+
+------------------------------------------------------
+Unable to execute dex: Multiple dex files define
+remove project admob trong android lib
