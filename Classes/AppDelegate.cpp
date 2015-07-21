@@ -1,5 +1,6 @@
 #include "AppDelegate.h"
 #include "MainScene.h"
+#include "PluginManager.h"
 
 
 USING_NS_CC;
@@ -31,7 +32,10 @@ static int register_all_packages()
 }
 
 bool AppDelegate::applicationDidFinishLaunching() {
-
+    //uto hoge = plugin::PluginManager :: getInstance () -> loadPlugin ( "hoge" );
+   // if ( ! hoge ) {
+    //    log ( "hoge load fail" );
+    //}
 	
     // initialize director
     auto director = Director::getInstance();
