@@ -1,6 +1,7 @@
 #include "AppDelegate.h"
 #include "MainScene.h"
 #include "PluginManager.h"
+#include "PluginGoogleAnalytics/PluginGoogleAnalytics.h"
 
 
 USING_NS_CC;
@@ -32,11 +33,11 @@ static int register_all_packages()
 }
 
 bool AppDelegate::applicationDidFinishLaunching() {
-    //uto hoge = plugin::PluginManager :: getInstance () -> loadPlugin ( "hoge" );
-   // if ( ! hoge ) {
-    //    log ( "hoge load fail" );
-    //}
+
+	sdkbox::PluginGoogleAnalytics::init();
+	sdkbox::PluginGoogleAnalytics::startSession();
 	
+
     // initialize director
     auto director = Director::getInstance();
     auto glview = director->getOpenGLView();

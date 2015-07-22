@@ -4,6 +4,8 @@
 #include "FacebookAgent.h"
 #include "MyAdsListener.h"
 #include "PluginManager.h"
+#include "PluginGoogleAnalytics/PluginGoogleAnalytics.h"
+#include "AdmobHelper.h"
 
 USING_NS_CC;
 
@@ -25,6 +27,8 @@ Scene* MainScene::createScene()
 // on "init" you need to initialize your instance
 bool MainScene::init()
 {
+	sdkbox::PluginGoogleAnalytics::logScreen("Main Menu");
+
     //////////////////////////////
     // 1. super init first
     if ( !Layer::init() )
@@ -84,25 +88,35 @@ bool MainScene::init()
     //////////////////////////////
     // admob
     //auto listener = new MyAdsListener();
-    auto admob = dynamic_cast<ProtocolAds*>(PluginManager::getInstance()->loadPlugin("AdsAdmob"));
-    TAdsDeveloperInfo devInfo;
-#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
-    devInfo["AdmobID"] = "ca-app-pub-3897960758510166/9409157531";
-#elif CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
-    devInfo["AdmobID"] = "ca-app-pub-3897960758510166/6316090337";
-#endif
-    admob->configDeveloperInfo(devInfo);
-    //admob->setAdsListener(listener);
-    //admob->setDebugMode(true);
-    TAdsInfo adInfo;
-    adInfo[ "AdmobType" ] = "1" ;
-    adInfo["AdmobSizeEnum"] = "1";
-    
-    admob->showAds(adInfo, ProtocolAds::kPosTop);
-//http://qiita.com/blankblank/items/0daf178e5e070a723798
-//http://laboyukai.blogspot.com/2014/06/cocos2dx-v30-plugin-x-admob.html
+//    auto admob = dynamic_cast<ProtocolAds*>(PluginManager::getInstance()->loadPlugin("AdsAdmob"));
+//    TAdsDeveloperInfo devInfo;
+//#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+//    devInfo["AdmobID"] = "ca-app-pub-3897960758510166/9409157531";
+//#elif CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+//    devInfo["AdmobID"] = "ca-app-pub-3897960758510166/6316090337";
+//#endif
+//    admob->configDeveloperInfo(devInfo);
+//    //admob->setAdsListener(listener);
+//    //admob->setDebugMode(true);
+//    TAdsInfo adInfo;
+//    adInfo[ "AdmobType" ] = "1" ;
+//    adInfo["AdmobSizeEnum"] = "1";
+//
+//    admob->showAds(adInfo, ProtocolAds::kPosTop);
+
     //////////////////////////////
     
+    //////////////////////////////////////////////////////////////////////////
+    //Toggle ad when touch the screen
+#elif CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID	
+            AdmobHelper::showAd();
+#endif
+
+
+    //////////////////////////////////////////////////////////////////////////
+
+
+
     return true;
 }
 
