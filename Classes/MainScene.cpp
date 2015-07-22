@@ -86,29 +86,27 @@ bool MainScene::init()
     this->addChild(sprite, 0);
     
     //////////////////////////////
-    // admob
-    //auto listener = new MyAdsListener();
-//    auto admob = dynamic_cast<ProtocolAds*>(PluginManager::getInstance()->loadPlugin("AdsAdmob"));
-//    TAdsDeveloperInfo devInfo;
-//#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
-//    devInfo["AdmobID"] = "ca-app-pub-3897960758510166/9409157531";
-//#elif CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
-//    devInfo["AdmobID"] = "ca-app-pub-3897960758510166/6316090337";
-//#endif
-//    admob->configDeveloperInfo(devInfo);
-//    //admob->setAdsListener(listener);
-//    //admob->setDebugMode(true);
-//    TAdsInfo adInfo;
-//    adInfo[ "AdmobType" ] = "1" ;
-//    adInfo["AdmobSizeEnum"] = "1";
-//
-//    admob->showAds(adInfo, ProtocolAds::kPosTop);
+    // admob
+    #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+    auto admob = dynamic_cast<ProtocolAds*>(PluginManager::getInstance()->loadPlugin("AdsAdmob"));
+    TAdsDeveloperInfo devInfo;
 
+    devInfo["AdmobID"] = "ca-app-pub-3897960758510166/9409157531";
+
+    admob->configDeveloperInfo(devInfo);
+    //admob->setAdsListener(listener);
+    //admob->setDebugMode(true);
+    TAdsInfo adInfo;
+    adInfo[ "AdmobType" ] = "1" ;
+    adInfo["AdmobSizeEnum"] = "1";
+
+    admob->showAds(adInfo, ProtocolAds::kPosTop);
+    #endif
     //////////////////////////////
     
     //////////////////////////////////////////////////////////////////////////
     //Toggle ad when touch the screen
-#elif CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID	
+#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID	
             AdmobHelper::showAd();
 #endif
 
